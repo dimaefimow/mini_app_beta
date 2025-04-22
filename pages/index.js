@@ -13,14 +13,14 @@ export default function Home() {
     setError(null);
 
     try {
-      const res = await fetch(`https://vid.puffyan.us/api/v1/search?q=${encodeURIComponent(query)}&type=video`);
-      if (!res.ok) throw new Error('Ошибка при загрузке видео');
-      const data = await res.json();
-      setVideos(data);
-    } catch (err) {
-      setError('Не удалось загрузить видео. Попробуйте позже.');
-    } finally {
-      setLoading(false);
+    const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+    if (!res.ok) throw new Error('Ошибка при загрузке видео');
+    const data = await res.json();
+    setVideos(data);
+  } catch (err) {
+    setError('Не удалось загрузить видео. Попробуйте позже.');
+  } finally {
+    setLoading(false);
     }
   };
 
